@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForDogs - Home</title>
+    <title>ForDogs - Appointment</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+    <header class="bg-danger">
+        <div class="text-white pt-2 mb-0 text-center pr-3">
+            <button class="btn float-left pt-3 mr-4 active" onclick="toggleNav()" id="navBtn" aria-pressed="true">
+                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-list" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </button>
+            <img class="d-inline-block mb-3 mr-3" width="64" height="64" src="../images/logo.png" alt="">
+            <span class="d-none d-md-inline h1 font-weight-normal">
+                ForDogs
+            </span>           
+            <button class="btn float-right" id="cartBtn">
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-cart2" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                </svg><br><span class="text-white">Check-out</span> 
+            </button>
+        </div>
+    </header>
     <div class="row" id="homepage">
         <nav class="container border col-sm-2">
-            <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
             <ul class="nav flex-column ">
                 <li class="nav-item h1 mt-2 pt-4">
                     <a class="nav-link text-dark" href="#">
@@ -21,7 +36,6 @@
                             <path fill-rule="evenodd" d="M2 15v-1c0-1 1-4 6-4s6 3 6 4v1H2zm6-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         </svg>Username
                     </a>
-                    <br><br>
                 </li>
                 <li class="nav-item h3 py-4">
                     <a class="nav-link text-dark" href="home.html">
@@ -52,24 +66,64 @@
                 </li>
             </ul>
         </nav>
-        <div class="container col-sm-10">
+        <div class="container col-sm-10" id="pagecontent">
             <h1 class="display-4 text-center">Calendar</h1>
-            <div class="col-12 text-right">
-                <button class="btn mr-5 my-5">
-                    <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    </svg>
+            <div class="col text-right">
+                <button class="btn mr-5 my-5" data-toggle="modal" data-target="#newAppointment">
+                    <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-calendar-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                        <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+                      </svg>
                 </button>
             </div>
         </div>
+    </div>
+
+
+    <!-- NEW APPOINTMENT WINDOW -->
+    <div class="modal fade" id="newAppointment" tabindex="-1" aria-labelledby="appointmentTitle" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h4 class="modal-title" id="appointmentTitle">New appointment</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="pets">Appointment for: </label>
+                            <select name="" id="pets">
+                                <option value="petname">Pet name</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="purpose" class="col-form-label">Purpose:</label>
+                            <input type="text" name="" id="purpose">
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentDate" class="col-form-label">Date:</label>
+                            <input type="date" id="appointmentDate">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-primary">Schedule</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+          </div>
+        </div>
+      </div>
+    <!-- NEW APPOINTMENT WINDOW END-->
 
     <!-- FOOTER -->
     <footer class="w-100 bg-secondary">
         <div class="container text-center">
-            <p class="h5 p-3 text-white">&copy; 2020 ForDogs</p>
+            <p class="h5 p-3 text-white mb-0">&copy; 2020 ForDogs</p>
         </div>
     </footer>
+    <!-- FOOTER END -->
 
 
     <script src="../js/jquery.js"></script>

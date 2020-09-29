@@ -8,20 +8,35 @@
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+    <header class="bg-danger">
+        <div class="text-white pt-2 mb-0 text-center pr-3">
+            <button class="btn float-left pt-3 mr-4 active" onclick="toggleNav()" id="navBtn" aria-pressed="true">
+                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-list" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+            </button>
+            <img class="d-inline-block mb-3 mr-3" width="64" height="64" src="../images/logo.png" alt="">
+            <span class="d-none d-md-inline h1 font-weight-normal">
+                ForDogs
+            </span>           
+            <button class="btn float-right" id="cartBtn">
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-cart2" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                </svg><br><span class="text-white">Check-out</span> 
+            </button>
+        </div>
+    </header>
+
     <div class="row" id="homepage">
         <nav class="container border col-sm-2">
-            <button type="button" class="close" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
             <ul class="nav flex-column ">
-                <li class="nav-item h1 mt-2 pt-4">
+                <li class="nav-item mt-2 pt-4">
                     <a class="nav-link text-dark" href="#">
-                        <svg class="mb-2 mr-2" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="mb-3 mr-2" width="2.5em" height="2.5em" viewBox="0 0 16 16" class="bi bi-person-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                             <path fill-rule="evenodd" d="M2 15v-1c0-1 1-4 6-4s6 3 6 4v1H2zm6-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                        </svg>Username
+                        </svg> <h1 class="h1 mt-3 d-inline">Username</h1>
                     </a>
-                    <br><br>
                 </li>
                 <li class="nav-item h3 py-4">
                     <a class="nav-link text-dark" href="home.html">
@@ -44,17 +59,19 @@
                             <path fill-rule="evenodd" d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
                         </svg>Store
                     </a>
-
-                </li>
-                <li><hr></li>
-                <li class="nav-item mb-0 mt-5 ml-3 pt-5">
-                    <img src="../images/logo.png" height="64" width="64" alt="">
+                    <hr>
                 </li>
             </ul>
         </nav>
-        <div class="container col-sm-10">
+        <div class="container col-sm-10" id="pagecontent">
             <h1 class="display-4">My dogs</h1>
             <button class="btn"><img  class="img-fluid border border-dark rounded" width="250" height="250" src="../images/placeholder.jpg" alt=""> <span class="h4">Pet name</span></button>
+            <button class="btn" data-toggle="modal" data-target="#newPet">
+                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                </svg><br> <span class="lead">Add dog</span>
+            </button>
             <h1 class="display-4">Upcoming appointments</h1>
             <div class="card m-3 my-4" style="width: 18rem;">
                 <div class="card-body">
@@ -69,25 +86,62 @@
             <div class="card" style="width: 18rem;">
                 <img src="../images/orderplaceholder.jpg" width="150" height="300" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h6 class="card-title">Eukanuba <b>Adult</b> - 20<b>kg</b></h6>
-                  <a href="#" class="card-link">More info</a>
+                <h6 class="card-title">Eukanuba <b>Adult</b> - 20<b>kg</b></h6>
+                <a href="#" class="card-link">More info</a>
                 </div>
-              </div>
-        </div>
-        <div class="col-12 text-right">
-            <button class="btn mr-5 my-5">
-                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                </svg>
-            </button>
+            </div>
         </div>
     </div>
+
+    <!-- NEW DOG ADD WINDOW -->
+    <div class="modal fade" id="newPet" tabindex="-1" aria-labelledby="addTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h4 class="modal-title" id="addTitle">Your pet's information</h4>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="dogName" class="col-form-label">Name:</label>
+                            <input type="text" name="" id="dogName">
+                        </div>
+                        <div class="form-group">
+                            <label for="dogBreed" class="col-form-label">Breed:</label>
+                            <input type="text" name="" id="dogBreed">
+                        </div>
+                        <div class="form-group">
+                            <label for="dogAge" class="col-form-label">Age:</label>
+                            <input type="text" name="" id="dogAge">
+                        </div>
+                        <div class="form-group">
+                            <label for="purpose" class="col-form-label">Purpose:</label>
+                            <input type="text" name="" id="purpose">
+                        </div>
+                        <div class="form-group">
+                            <label for="dogPicture" class="lead mb-1">Add your dog's picture</label>
+                            <input type="file" name="" id="dogPicture">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-primary px-3">Add</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NEW APPOINTMENT WINDOW END-->
+
+
 
     <!-- FOOTER -->
     <footer class="w-100 bg-secondary">
         <div class="container text-center">
-            <p class="h5 p-3 text-white">&copy; 2020 ForDogs</p>
+            <p class="h5 p-3 text-white mb-0">&copy; 2020 ForDogs</p>
         </div>
     </footer>
 

@@ -49,6 +49,17 @@ body, html{
 	size: 100vh;
 }
 
+#appointmentWindow{
+	display: none;
+}
+#dogAddWindow{
+	display: none;
+}
+
+.close{
+	font-size: 2rem;
+}
+
 @media screen and (max-width: 576px) {	
   	.overlay a {font-size: 20px}
 	  
