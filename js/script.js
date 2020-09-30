@@ -6,6 +6,8 @@ let savechangeBtn = document.querySelector("#savechangesBtn")
 let cancelEdit = document.querySelector("#cancelchangesBtn")
 let name = document.querySelector("#name")
 let birthday = document.querySelector("#birthday")
+let newPicture = document.querySelector("#newPicture")
+let PPicture = document.querySelector("#PPicture")
 
 
 function toggleNav(){
@@ -35,3 +37,12 @@ function editMode(){
     birthday.readOnly = false;
 }
 
+function changePPicture(){
+    let x = newPicture.value;
+    document.getElementById("test").innerHTML = x;
+    PPicture.src = x; 
+}
+
+function removePPicture(){
+    PPicture.src = "../images/removedImg.png";
+}
