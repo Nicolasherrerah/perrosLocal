@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForDogs - Appointment</title>
+    <title>ForDogs - User</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
@@ -78,55 +78,42 @@
             </ul>
         </nav>
         <div class="container col-sm-10" id="pagecontent">
-            <h1 class="display-4 text-center">Calendar</h1>
-            <div class="col text-right">
-                <button class="btn mr-5 my-5" data-toggle="modal" data-target="#newAppointment">
-                    <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-calendar-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                        <path fill-rule="evenodd" d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
-                      </svg>
-                </button>
+            <h1 class="display-4 text-center">Account</h1>
+            <div class="row">
+            <div class="col-md-4 text-center">
+                <img src="../images/product.png" alt="..." class="img-thumbnail rounded-circle mx-auto" height="200" width="200">
+                <div class="dropdown text-center mt-2">
+                    <a class="btn btn-success text-white dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Change picture
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#"><input type="file" name="" id=""></a>
+                    <a class="dropdown-item" href="#">Remove picture</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <form>
+                    <div class="form-group mt-4">
+                        <label for="username">Username:</label>
+                        <input type="text" readonly class="form-control-plaintext" name="" id="username">
+                        <label for="username">Name:</label>
+                        <input type="text" readonly class="form-control-plaintext" name="" id="name">
+                        <label for="email">Email:</label>
+                        <input type="email" readonly class="form-control-plaintext" name="" id="email">
+                        <label for="birthday">Birthday:</label>
+                        <input type="date" readonly class="form-control-plaintext" name="" id="birthday">
+                        <br>
+                        <div>
+                        <button class="btn btn-success px-3" onclick=""><span class="h5 font-weight-normal">Edit profile</span></button>
+                        <button class="btn btn-danger ml-4 d-none"> <span class="h5 font-weight-normal">Cancel</span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             </div>
         </div>
     </div>
-
-
-    <!-- NEW APPOINTMENT WINDOW -->
-    <div class="modal fade" id="newAppointment" tabindex="-1" aria-labelledby="appointmentTitle" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-                <div class="modal-header bg-light">
-                    <h4 class="modal-title" id="appointmentTitle">New appointment</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="pets">Appointment for: </label>
-                            <select name="" id="pets">
-                                <option value="petname">Pet name</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="purpose" class="col-form-label">Purpose:</label>
-                            <input type="text" name="" id="purpose">
-                        </div>
-                        <div class="form-group">
-                            <label for="appointmentDate" class="col-form-label">Date:</label>
-                            <input type="date" id="appointmentDate">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-primary">Schedule</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                </div>
-          </div>
-        </div>
-      </div>
-    <!-- NEW APPOINTMENT WINDOW END-->
 
     <!-- FOOTER -->
     <footer class="w-100 bg-secondary">
@@ -136,7 +123,7 @@
     </footer>
     <!-- FOOTER END -->
 
-
+    <script src="../js/popper.min.js"></script>
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/script.js"></script>

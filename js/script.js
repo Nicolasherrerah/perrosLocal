@@ -17,3 +17,4 @@ function toggleNav(){
         navContent.style.display = "none";
     }
 }
+
