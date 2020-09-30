@@ -4,16 +4,16 @@ let navBtn = document.querySelector("#navBtn")
 
 
 function toggleNav(){
-    if (pageContent.classList.contains("col-sm-12")){
-        navContent.classList.add("col-sm-2");
-        pageContent.classList.remove("col-sm-12");
-        pageContent.classList.add("col-sm-10");
+    if (pageContent.classList.contains("col-md-12")){
+        navContent.classList.add("col-md-2");
+        pageContent.classList.remove("col-md-12");
+        pageContent.classList.add("col-md-10");
         navContent.style.display = "block";
     }
-    else if (navContent.classList.contains("col-sm-2")){
-        navContent.classList.remove("col-sm-2");
-        pageContent.classList.remove("col-sm-10");
-        pageContent.classList.add("col-sm-12");
+    else if (navContent.classList.contains("col-md-2")){
+        navContent.classList.remove("col-md-2");
+        pageContent.classList.remove("col-md-10");
+        pageContent.classList.add("col-md-12");
         navContent.style.display = "none";
     }
 }
