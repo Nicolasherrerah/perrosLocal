@@ -1,6 +1,11 @@
 let navContent = document.querySelector("#homepage > nav")
 let pageContent = document.querySelector("#pagecontent")
 let navBtn = document.querySelector("#navBtn")
+let editprofileBtn = document.querySelector("#editprofileBtn")
+let savechangeBtn = document.querySelector("#savechangesBtn")
+let cancelEdit = document.querySelector("#cancelchangesBtn")
+let name = document.querySelector("#name")
+let birthday = document.querySelector("#birthday")
 
 
 function toggleNav(){
@@ -16,5 +21,17 @@ function toggleNav(){
         pageContent.classList.add("col-md-12");
         navContent.style.display = "none";
     }
+}
+
+function editMode(){
+    editprofileBtn.classList.add("d-none");
+    savechangeBtn.classList.remove("d-none");
+    cancelEdit.classList.remove("d-none");
+    name.classList.remove("form-control-plaintext");
+    name.classList.add("form-control");
+    name.readOnly = false;
+    birthday.classList.remove("form-control-plaintext");
+    birthday.classList.add("form-control");
+    birthday.readOnly = false;
 }
 

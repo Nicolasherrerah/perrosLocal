@@ -104,12 +104,11 @@
                         <label for="birthday">Birthday:</label>
                         <input type="date" readonly class="form-control-plaintext" name="" id="birthday">
                         <br>
-                        <div>
-                        <button class="btn btn-success px-3" onclick=""><span class="h5 font-weight-normal">Edit profile</span></button>
-                        <button class="btn btn-danger ml-4 d-none"> <span class="h5 font-weight-normal">Cancel</span></button>
-                        </div>
                     </div>
                 </form>
+                <button class="btn btn-success px-3" onclick="editMode()" id="editprofileBtn"><span class="h5 font-weight-normal">Edit profile</span></button>
+                <button class="btn btn-success px-3 d-none" onclick="" id="savechangesBtn"><span class="h5 font-weight-normal">Save changes</span></button>
+                <button class="btn btn-danger ml-4 d-none" onclick="location.reload()" id="cancelchangesBtn"> <span class="h5 font-weight-normal">Cancel</span></button>
             </div>
             </div>
         </div>
