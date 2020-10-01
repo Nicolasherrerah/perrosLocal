@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForDogs - User</title>
+    <title>ForDogs - Check-out</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body>
+<body >
     <header class="bg-danger">
         <div class="text-white pt-2 mb-0 text-center pr-3">
             <button class="btn float-left pt-3 mr-4 active" onclick="toggleNav()" id="navBtn" aria-pressed="true">
@@ -82,37 +82,49 @@
         <div class="container col-sm-10" id="pagecontent">
             <h1 class="display-4 text-center">Check-out</h1>
             <div class="row">
-            <div class="col-md-4 text-center">
-                <button class="btn" height="200" width="200"><img src="../images/product.png" alt="..." class="img-thumbnail rounded-circle mx-auto bg-danger" height="200" width="200" id="PPicture"></button>
-                <div class="dropdown text-center mt-2">
-                    <a class="btn btn-success text-white dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Change picture
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#"><input type="file" name="" id="newPicture"></a>
-                        <a class="dropdown-item" href="#" onclick="changePPicture()">Change</a>
-                        <a class="dropdown-item" href="#" onclick="removePPicture()">Remove</a>
-                    </div>
-                    <p id="test"></p>
-                </div>
-            </div>
             <div class="col-md-8">
-                <form>
-                    <div class="form-group mt-4">
-                        <label for="username">Username:</label>
-                        <input type="text" readonly class="form-control-plaintext" name="" id="username">
-                        <label for="email">Email:</label>
-                        <input type="email" readonly class="form-control-plaintext" name="" id="email">
-                        <label for="username">Name:</label>
-                        <input type="text" readonly class="form-control-plaintext" name="" id="name">
-                        <label for="birthday">Birthday:</label>
-                        <input type="date" readonly class="form-control-plaintext" name="" id="birthday">
+                <h1 class="font-weight-normal">Cart</h1>
+                <br>
+                <div class="row mx-0 border-bottom">
+                    <div class="col-md-3">
+                        <img  src="../images/product.png" alt="" height="200" weight="200">
                         <br>
                     </div>
-                </form>
-                <button class="btn btn-success px-3 mb-2" onclick="editMode()" id="editprofileBtn"><span class="h5 font-weight-normal">Edit profile</span></button>
-                <button class="btn btn-success px-3 mb-2 d-none" onclick="" id="savechangesBtn"><span class="h5 font-weight-normal">Save changes</span></button>
-                <button class="btn btn-danger ml-4 mb-2 d-none" onclick="location.reload()" id="cancelchangesBtn"> <span class="h5 font-weight-normal">Cancel</span></button>
+                    <div class="col-md-9">
+                        <p class="h3 font-weight-normal d-inline-block">Product name</p>
+                        <p class="h3 font-weight-normal float-right">$00.00</p>
+                        <p class="h5 text-muted pb-3">Category</p>
+                        <label class="h5 text-muted" for="quantity">Quantity: </label>
+                        <select class="h6 " name="" id="quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <br>
+                        <br>
+                        <a href="" class="text-dark h6 font-weight-normal">Remove</a>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="border rounded p-2">
+                    <p class="h2">Summary</p>
+                    <img class="my-3 d-inline-block"src="../images/product.png" alt="" height="100" weight="100">
+                    <div class="ml-3 d-inline-block">
+                        <p class="h5 font-weight-normal d-inline-block mr-5">Product name: </p>
+                        <span class="h6 font-weight-normal"> $00.00</span>
+                        <br>
+                        <p class="h6 text-muted d-inline-block">Quantity: </p><span class="text-muted"> 1</span>
+                    </div>
+                    <hr>
+                    <p class="h5 text-muted">Subtotal</p>
+                    <p class="h6 text-muted">Shipping</p>
+                    <hr>
+                    <p class="h3">Total</p>
+                </div>
             </div>
             </div>
         </div>
