@@ -84,6 +84,27 @@
             <br>
             <form class="w-50 m-auto">
                 <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</button>
+                        <div class="dropdown-menu custom-radio ml-1">
+                            <a class="dropdown-item ml-1" href="#">
+                                <input type="radio" id="category1" name="category" class="custom-control-input">
+                                <label class="custom-control-label" for="category1">Food &amp; Treats</label>
+                            </a>
+                            <a class="dropdown-item ml-1" href="#">
+                                <input type="radio" id="category2" name="category" class="custom-control-input">
+                                <label class="custom-control-label" for="category2">Clothes &amp; Accesories</label>
+                            </a>
+                            <a class="dropdown-item ml-1" href="#">
+                                <input type="radio" id="category3" name="category" class="custom-control-input">
+                                <label class="custom-control-label" for="category3">Grooming &amp; bathing supplies</label>
+                            </a>
+                            <a class="dropdown-item ml-1" href="#">
+                                <input type="radio" id="category4" name="category" class="custom-control-input">
+                                <label class="custom-control-label" for="category4">Toys</label>
+                            </a>
+                        </div>
+                    </div>
                     <input type="search" class="form-control" name="" id="searchItem" placeholder="Search " aria-describedby="searchIcon">
                     <button class="btn input-group-text" id="searchIcon">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -308,6 +329,7 @@
     </footer>
     <!-- FOOTER END -->
 
+    <script src="../js/popper.min.js"></script>
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/script.js"></script>
