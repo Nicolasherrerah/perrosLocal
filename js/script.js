@@ -8,7 +8,8 @@ let name = document.querySelector("#name")
 let birthday = document.querySelector("#birthday")
 let newPicture = document.querySelector("#newPicture")
 let PPicture = document.querySelector("#PPicture")
-
+let signupBtn = document.querySelector("#signupBtn")
+let loginBtn = document.querySelector("#loginBtn")
 
 function toggleNav(){
     if (pageContent.classList.contains("col-md-12")){
@@ -45,4 +46,49 @@ function changePPicture(){
 
 function removePPicture(){
     PPicture.src = "../images/removedImg.png";
+}
+
+let users = [];
+
+const newUser = (event) =>{
+    
+    if (document.querySelector("form").checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+        document.querySelector("#fillAll").classList.remove("d-none")
+    }
+    else{
+        event.preventDefault();
+        let user = {
+            id: Date.now(),
+            name: document.querySelector("#name").value,
+            username: document.querySelector("#username").value,
+            email: document.querySelector("#email").value,
+            password: document.querySelector("#password").value
+        }
+        users.push(user);
+        document.querySelector("form").reset();
+        localStorage.setItem('Users', JSON.stringify(users));
+
+       
+    }
+    /*window.location.assign("../index.html");*/
+}
+
+const logIn = (event) =>{
+    event.preventDefault();
+    console.log(localStorage.getItem("Users"))
+    /*window.location.assign("html/home.html");*/
+}
+
+if (signupBtn) {
+    document.addEventListener('DOMContentLoaded', ()=>{
+        signupBtn.addEventListener("click", newUser);
+    })
+}
+
+if (loginBtn) {
+    document.addEventListener('DOMContentLoaded', ()=>{
+        loginBtn.addEventListener("click", logIn);
+    })
 }
