@@ -48,29 +48,46 @@ function removePPicture(){
     PPicture.src = "../images/removedImg.png";
 }
 
-let users = [];
+
 
 const newUser = (event) =>{
-    
+
     if (document.querySelector("form").checkValidity() === false) {
         event.preventDefault();
         event.stopPropagation();
         document.querySelector("#fillAll").classList.remove("d-none")
     }
     else{
-        event.preventDefault();
-        let user = {
-            id: Date.now(),
-            name: document.querySelector("#name").value,
-            username: document.querySelector("#username").value,
-            email: document.querySelector("#email").value,
-            password: document.querySelector("#password").value
+        if (localStorage.getItem("Users")) {
+            event.preventDefault();
+            users = JSON.parse(localStorage.getItem("Users"));
+            let user = {
+                id: Date.now(),
+                name: document.querySelector("#name").value,
+                username: document.querySelector("#username").value,
+                email: document.querySelector("#email").value,
+                password: document.querySelector("#password").value
+            }
+            users.push(user);
+            document.querySelector("form").reset();
+            localStorage.setItem('Users', JSON.stringify(users));   
         }
-        users.push(user);
-        document.querySelector("form").reset();
-        localStorage.setItem('Users', JSON.stringify(users));
 
-       
+        else{
+            let users = [];
+            event.preventDefault();
+            let user = {
+                id: Date.now(),
+                name: document.querySelector("#name").value,
+                username: document.querySelector("#username").value,
+                email: document.querySelector("#email").value,
+                password: document.querySelector("#password").value
+            }
+            users.push(user);
+            document.querySelector("form").reset();
+            localStorage.setItem('Users', JSON.stringify(users));
+        }
+        document.querySelector("#fillAll").classList.add("d-none")
     }
     /*window.location.assign("../index.html");*/
 }
