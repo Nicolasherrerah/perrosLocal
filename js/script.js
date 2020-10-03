@@ -50,7 +50,7 @@ function removePPicture(){
 
 
 
-const newUser = (event) =>{
+function newUser(event){
 
     if (document.querySelector("form").checkValidity() === false) {
         event.preventDefault();
@@ -89,10 +89,11 @@ const newUser = (event) =>{
         }
         document.querySelector("#fillAll").classList.add("d-none")
     }
-    /*window.location.assign("../index.html");*/
+    document.querySelector("#createdAlert").classList.remove("d-none")
+    setTimeout(()=>{window.location.assign("../index.html"); } , 500);
 }
 
-const logIn = (event) =>{
+function logIn(event){
     event.preventDefault();
     console.log(localStorage.getItem("Users"))
     /*window.location.assign("html/home.html");*/
