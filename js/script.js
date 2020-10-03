@@ -51,7 +51,6 @@ function removePPicture(){
 
 
 function newUser(event){
-
     if (document.querySelector("form").checkValidity() === false) {
         event.preventDefault();
         event.stopPropagation();
@@ -90,13 +89,22 @@ function newUser(event){
         document.querySelector("#fillAll").classList.add("d-none")
     }
     document.querySelector("#createdAlert").classList.remove("d-none")
-    setTimeout(()=>{window.location.assign("../index.html"); } , 500);
+    setTimeout(()=>{window.location.assign("../index.html"); } , 1000);
 }
 
 function logIn(event){
     event.preventDefault();
-    console.log(localStorage.getItem("Users"))
-    /*window.location.assign("html/home.html");*/
+    userList = JSON.parse(localStorage.getItem("Users"));
+    let email = document.querySelector("#email").value;
+    let password = document.querySelector("#password").value;
+
+    userList.find((em)=>{
+        if(em.email == email && em.password == password){
+            localStorage.setItem('activeUser', JSON.stringify(em))
+            window.location.assign("html/home.html");
+        }
+    })
+
 }
 
 if (signupBtn) {
@@ -109,4 +117,10 @@ if (loginBtn) {
     document.addEventListener('DOMContentLoaded', ()=>{
         loginBtn.addEventListener("click", logIn);
     })
+}
+
+function activeUser(){
+    user = JSON.parse(localStorage.getItem("activeUser"));
+    document.querySelector("#usernameTag").innerText = user.username;
+    document.querySelector("#usernameTag2").innerText = user.username;
 }
