@@ -11,6 +11,7 @@ let PPicture = document.querySelector("#PPicture")
 let signupBtn = document.querySelector("#signupBtn")
 let loginBtn = document.querySelector("#loginBtn")
 
+
 function toggleNav(){
     if (pageContent.classList.contains("col-md-12")){
         navContent.classList.add("col-md-2");
@@ -107,6 +108,33 @@ function logIn(event){
 
 }
 
+function activeUser(){
+    user = JSON.parse(localStorage.getItem("activeUser"));
+    document.querySelector("#usernameTag").innerText = user.username;
+    document.querySelector("#usernameTag2").innerText = user.username;
+    document.querySelector("#username").value = user.username;
+    document.querySelector("#email").value = user.email;
+    document.querySelector("#name").value = user.name;
+    document.querySelector("#birthday").value = user.birthday;
+}
+
+function editProfile(){
+    user = JSON.parse(localStorage.getItem("activeUser"));
+    user.name = document.querySelector("#name").value;
+    user.birthday = document.querySelector("#birthday").value;
+    localStorage.setItem('activeUser', JSON.stringify(user));
+    document.querySelector("#createdAlert").classList.remove("d-none");
+    editprofileBtn.classList.remove("d-none");
+    savechangeBtn.classList.add("d-none");
+    cancelEdit.classList.add("d-none");
+    document.querySelector("#name").readOnly = true;
+    document.querySelector("#birthday").readOnly = true;
+    name.classList.remove("form-control");
+    name.classList.add("form-control-plaintext");
+    birthday.classList.remove("form-control");
+    birthday.classList.add("form-control-plaintext");
+}
+
 if (signupBtn) {
     document.addEventListener('DOMContentLoaded', ()=>{
         signupBtn.addEventListener("click", newUser);
@@ -119,8 +147,9 @@ if (loginBtn) {
     })
 }
 
-function activeUser(){
-    user = JSON.parse(localStorage.getItem("activeUser"));
-    document.querySelector("#usernameTag").innerText = user.username;
-    document.querySelector("#usernameTag2").innerText = user.username;
+
+if (savechangeBtn) {
+    document.addEventListener('DOMContentLoaded', ()=>{
+        savechangeBtn.addEventListener("click", editProfile);
+    })
 }
