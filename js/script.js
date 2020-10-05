@@ -10,6 +10,12 @@ let newPicture = document.querySelector("#newPicture")
 let PPicture = document.querySelector("#PPicture")
 let signupBtn = document.querySelector("#signupBtn")
 let loginBtn = document.querySelector("#loginBtn")
+let category = document.querySelector("#categorySelect")
+let foodCarousel = document.querySelector("#foodCarousel");
+let clothesCarousel = document.querySelector("#clothesCarousel");
+let suppliesCarousel = document.querySelector("#suppliesCarousel");
+let toysCarousel = document.querySelector("#toysCarousel");
+
 
 
 function toggleNav(){
@@ -112,10 +118,13 @@ function activeUser(){
     user = JSON.parse(localStorage.getItem("activeUser"));
     document.querySelector("#usernameTag").innerText = user.username;
     document.querySelector("#usernameTag2").innerText = user.username;
-    document.querySelector("#username").value = user.username;
-    document.querySelector("#email").value = user.email;
-    document.querySelector("#name").value = user.name;
-    document.querySelector("#birthday").value = user.birthday;
+    if (editprofileBtn) {
+        document.querySelector("#username").value = user.username;
+        document.querySelector("#email").value = user.email;
+        document.querySelector("#name").value = user.name;
+        document.querySelector("#birthday").value = user.birthday;
+    }
+
 }
 
 function editProfile(){
@@ -152,4 +161,37 @@ if (savechangeBtn) {
     document.addEventListener('DOMContentLoaded', ()=>{
         savechangeBtn.addEventListener("click", editProfile);
     })
+}
+
+function selectedCategory(){
+    if(category.value == "food"){
+        foodCarousel.classList.remove("d-none");
+        clothesCarousel.classList.add("d-none");
+        suppliesCarousel.classList.add("d-none");
+        toysCarousel.classList.add("d-none");
+    }
+    else if (category.value == "clothes") {
+        clothesCarousel.classList.remove("d-none");
+        foodCarousel.classList.add("d-none");
+        suppliesCarousel.classList.add("d-none");
+        toysCarousel.classList.add("d-none");
+    }
+    else if (category.value == "bath") {
+        suppliesCarousel.classList.remove("d-none");
+        clothesCarousel.classList.add("d-none");
+        foodCarousel.classList.add("d-none");
+        toysCarousel.classList.add("d-none");
+    }
+    else if (category.value == "toys") {
+        toysCarousel.classList.remove("d-none");
+        clothesCarousel.classList.add("d-none");
+        suppliesCarousel.classList.add("d-none");
+        foodCarousel.classList.add("d-none");
+    }
+    else{
+        foodCarousel.classList.remove("d-none");
+        clothesCarousel.classList.remove("d-none");
+        suppliesCarousel.classList.remove("d-none");
+        toysCarousel.classList.remove("d-none");
+    }
 }
