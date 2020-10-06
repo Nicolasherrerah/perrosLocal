@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body onload="activeUser()">
+<body onload="activeUser(), dogInfo()">
     <header class="bg-danger">
         <div class="text-white pt-2 mb-0 text-center pr-3">
             <button class="btn float-left pt-3 mr-4 active" onclick="toggleNav()" id="navBtn" aria-pressed="true">
@@ -95,13 +95,16 @@
         </nav>
         <div class="container col-sm-10" id="pagecontent">
             <h1 class="display-4">My dogs</h1>
-            <button class="btn"><img  class="img-fluid border border-dark rounded" width="250" height="250" src="../images/placeholder.jpg" alt=""> <span class="h4">Pet name</span></button>
+            <div id="dogCards" class="d-inline-block">
+            <!--<button class="btn" data-toggle="modal" data-target="#dogInfo" id="dogBtn"><img  class="img-fluid border border-dark rounded" width="250" height="250" src="../images/placeholder.jpg" alt=""><span class="h4">Pet name</span></button>-->
+            </div>
             <button class="btn" data-toggle="modal" data-target="#newPet">
                 <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                     <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                 </svg><br> <span class="lead">Add dog</span>
             </button>
+
             <h1 class="display-4">Upcoming appointments</h1>
             <div class="card m-3 my-4" style="width: 18rem;">
                 <div class="card-body">
@@ -121,6 +124,7 @@
                 </div>
             </div>
         </div>
+        <input type="file" name="" id="testInput">
     </div>
 
     <!-- NEW DOG ADD WINDOW -->
@@ -128,7 +132,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-info text-white">
-                    <h4 class="modal-title" id="addTitle">Your pet's information</h4>
+                    <h4 class="modal-title" id="addTitle">Add your pet's information</h4>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -137,31 +141,43 @@
                     <form>
                         <div class="form-group">
                             <label for="dogName" class="col-form-label">Name:</label>
-                            <input type="text" name="" id="dogName">
+                            <input type="text" name="" id="dogName" required>
                         </div>
                         <div class="form-group">
                             <label for="dogBreed" class="col-form-label">Breed:</label>
-                            <input type="text" name="" id="dogBreed">
+                            <input type="text" name="" id="dogBreed" required>
                         </div>
                         <div class="form-group">
                             <label for="dogAge" class="col-form-label">Age:</label>
-                            <input type="text" name="" id="dogAge">
+                            <input type="text" name="" id="dogAge" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dogBirth" class="col-form-label">Birthday:</label>
+                            <input type="date" name="" id="dogBirth" required>
                         </div>
                         <div class="form-group">
                             <label for="dogPicture" class="lead mb-1">Add your dog's picture</label>
                             <input type="file" name="" id="dogPicture">
                         </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary px-3" id="addDogBtn">Add dog</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-primary px-3">Add</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                </div>
+
             </div>
         </div>
     </div>
-    <!-- NEW APPOINTMENT WINDOW END-->
+    <!-- NEW DOG ADD END-->
 
+
+    <!-- DOG INFO WINDOW -->
+    <div class="modal fade" id="dogInfo" tabindex="-1" aria-labelledby="addTitle" aria-hidden="true">
+
+    </div>
+
+    <!-- DOG INFO END-->
 
 
     <!-- FOOTER -->

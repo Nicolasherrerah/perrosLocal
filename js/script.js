@@ -15,6 +15,9 @@ let foodCarousel = document.querySelector("#foodCarousel");
 let clothesCarousel = document.querySelector("#clothesCarousel");
 let suppliesCarousel = document.querySelector("#suppliesCarousel");
 let toysCarousel = document.querySelector("#toysCarousel");
+let dogCards = document.querySelector("#dogCards")
+let addDogBtn = document.querySelector("#addDogBtn")
+let dogImg = "";
 
 
 
@@ -144,25 +147,124 @@ function editProfile(){
     birthday.classList.add("form-control-plaintext");
 }
 
-if (signupBtn) {
-    document.addEventListener('DOMContentLoaded', ()=>{
-        signupBtn.addEventListener("click", newUser);
+
+/*    HOME PAGE   */
+
+function selectedImg(){
+    const reader = new FileReader;
+    reader.addEventListener("load", ()=>{
+        dogImg = reader.result;
     })
+    reader.readAsDataURL(this.files[0]);
 }
 
-if (loginBtn) {
-    document.addEventListener('DOMContentLoaded', ()=>{
-        loginBtn.addEventListener("click", logIn);
-    })
+
+function addPet(event){
+    user = JSON.parse(localStorage.getItem("activeUser"));
+
+    if (document.querySelector("form").checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+        console.log("dog")
+    }
+    else{
+
+        if (localStorage.getItem("Dogs")) {
+            event.preventDefault();
+            dogs = JSON.parse(localStorage.getItem("Dogs"));
+            let dog = {
+                ownerId: user.id,
+                id: Date.now(),
+                name: document.querySelector("#dogName").value,
+                breed: document.querySelector("#dogBreed").value,
+                age: document.querySelector("#dogAge").value,
+                birthday: document.querySelector("#dogBirth").value,
+                picture: dogImg
+            }
+            dogs.push(dog);
+            document.querySelector("form").reset();
+            localStorage.setItem('Dogs', JSON.stringify(dogs)); 
+        }
+        else{
+            let dogs = [];
+            event.preventDefault();
+            let dog = {
+                ownerId: user.id,
+                id: Date.now(),
+                name: document.querySelector("#dogName").value,
+                breed: document.querySelector("#dogBreed").value,
+                age: document.querySelector("#dogAge").value,
+                birthday: document.querySelector("#dogBirth").value,
+                picture: dogImg
+            }
+            dogs.push(dog);
+            document.querySelector("form").reset();
+            localStorage.setItem('Dogs', JSON.stringify(dogs)); 
+        }
+        location.reload();
+    }
+    
+
 }
 
 
-if (savechangeBtn) {
-    document.addEventListener('DOMContentLoaded', ()=>{
-        savechangeBtn.addEventListener("click", editProfile);
-    })
-}
+function dogInfo(){
+    user = JSON.parse(localStorage.getItem("activeUser"));
+    dogList = JSON.parse(localStorage.getItem("Dogs"));
 
+    dogList.forEach( dog =>{
+        if(dog.ownerId == user.id){
+            dogCards.innerHTML += 
+            `<button class="btn dogBtn" data-toggle="modal" data-target="#dogInfo" >
+                <img  class="img-fluid border border-dark rounded" width="250" height="250" src="${dog.picture}" alt="">
+                <span class="h4">${dog.name}</span>
+            </button>`;
+            
+            document.querySelector("#dogInfo").innerHTML +=
+                `<div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h4 class="modal-title" id="addTitle">Your pet's information</h4>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="dogNameIn" class="col-form-label">Name:</label>
+                                    <input type="text"  readonly class="form-control-plaintext" name="" value = "${dog.name}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dogBreedIn" class="col-form-label">Breed:</label>
+                                    <input type="text"  readonly class="form-control-plaintext" name="" value = "${dog.breed}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dogAgeIn" class="col-form-label">Age:</label>
+                                    <input type="text"  readonly class="form-control-plaintext" name="" value = "${dog.age}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dogBirthIn" class="col-form-label">Birthday:</label>
+                                    <input type="date"  readonly class="form-control-plaintext" name="" value = "${dog.birthday}">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="py-3 text-center border-top">
+                            <button type="button" class="btn btn-success px-3" id="testBtn">Edit</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>`
+        }
+  
+        
+    })
+
+}
+/*    HOME PAGE END   */
+
+
+/*    STORE PAGE      */
 function selectedCategory(){
     if(category.value == "food"){
         foodCarousel.classList.remove("d-none");
@@ -195,3 +297,38 @@ function selectedCategory(){
         toysCarousel.classList.remove("d-none");
     }
 }
+
+/*  STORE PAGE END   */
+
+
+
+
+if (signupBtn) {
+    document.addEventListener('DOMContentLoaded', ()=>{
+        signupBtn.addEventListener("click", newUser);
+    })
+}
+
+if (loginBtn) {
+    document.addEventListener('DOMContentLoaded', ()=>{
+        loginBtn.addEventListener("click", logIn);
+    })
+}
+
+
+if (savechangeBtn) {
+    document.addEventListener('DOMContentLoaded', ()=>{
+        savechangeBtn.addEventListener("click", editProfile);
+    })
+}
+
+if (dogCards) {
+    document.addEventListener('DOMContentLoaded', ()=>{
+        addDogBtn.addEventListener("click", addPet);
+        document.querySelector("#dogPicture").addEventListener("change", selectedImg);
+        
+
+    })
+    
+}
+
