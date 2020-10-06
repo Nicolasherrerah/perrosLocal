@@ -17,6 +17,10 @@ let suppliesCarousel = document.querySelector("#suppliesCarousel");
 let toysCarousel = document.querySelector("#toysCarousel");
 let dogCards = document.querySelector("#dogCards")
 let addDogBtn = document.querySelector("#addDogBtn")
+let appoCards = document.querySelector("#appoCards")
+let pets = document.querySelector("#pets")
+let newAppoBtn = document.querySelector("#newAppoBtn")
+let addAppoBtn = document.querySelector("#addAppoBtn")
 let dogImg = "";
 
 
@@ -264,6 +268,90 @@ function dogInfo(){
 /*    HOME PAGE END   */
 
 
+
+/*    APPOINTMENT PAGE   */
+function petSelect(){
+    user = JSON.parse(localStorage.getItem("activeUser"));
+    dogList = JSON.parse(localStorage.getItem("Dogs"));
+    dogList.forEach( dog =>{
+        if(dog.ownerId == user.id){
+            pets.innerHTML += 
+            `<option value="${dog.name}">${dog.name}</option>`;
+        }
+    })
+}
+
+
+function addAppointment(event){
+    user = JSON.parse(localStorage.getItem("activeUser"));
+
+    if (document.querySelector("form").checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+
+    }
+    else{
+
+        if (localStorage.getItem("Appointments")) {
+            event.preventDefault();
+            appointments = JSON.parse(localStorage.getItem("Appointments"));
+            let appointment = {
+                userId: user.id,
+                id: Date.now(),
+                pet: document.querySelector("#pets").value,
+                purpose: document.querySelector("#purpose").value,
+                date: document.querySelector("#appointmentDate").value
+
+            }
+            appointments.push(appointment);
+            document.querySelector("form").reset();
+            localStorage.setItem('Appointments', JSON.stringify(appointments)); 
+        }
+        else{
+            let appointments = [];
+            event.preventDefault();
+            let appointment = {
+                userId: user.id,
+                id: Date.now(),
+                pet: document.querySelector("#pets").value,
+                purpose: document.querySelector("#purpose").value,
+                date: document.querySelector("#appointmentDate").value
+            }
+            appointments.push(appointment);
+            document.querySelector("form").reset();
+            localStorage.setItem('Appointments', JSON.stringify(appointments)); 
+        }
+        location.reload();
+    }
+    
+
+}
+
+
+function appoinmentInfo(){
+    user = JSON.parse(localStorage.getItem("activeUser"));
+    Appointments = JSON.parse(localStorage.getItem("Appointments"));
+
+    Appointments.forEach( appo =>{
+        if(appo.userId == user.id){
+            appoCards.innerHTML += 
+            `<div class="card m-3 my-4 d-inline-block" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">${appo.purpose}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">${appo.pet}</h6>
+                <input readonly class="d-block my-2"type="date" name="" value="${appo.date}">
+                <a href="#" class="btn btn-secondary btn-sm card-link px-3">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm card-link ">Cancel</a>
+                </div>
+            </div>`;          
+        }
+    })
+
+}
+
+/*    APPOINTMENT PAGE END  */
+
+
 /*    STORE PAGE      */
 function selectedCategory(){
     if(category.value == "food"){
@@ -326,9 +414,12 @@ if (dogCards) {
     document.addEventListener('DOMContentLoaded', ()=>{
         addDogBtn.addEventListener("click", addPet);
         document.querySelector("#dogPicture").addEventListener("change", selectedImg);
-        
-
-    })
-    
+    })  
 }
 
+if (newAppointment) {
+    document.addEventListener('DOMContentLoaded', ()=>{
+        newAppoBtn.addEventListener("click", petSelect);
+        addAppoBtn.addEventListener("click", addAppointment);
+    })
+}
