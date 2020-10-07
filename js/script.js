@@ -331,7 +331,9 @@ function addAppointment(event){
 function appoinmentInfo(){
     user = JSON.parse(localStorage.getItem("activeUser"));
     Appointments = JSON.parse(localStorage.getItem("Appointments"));
-
+    let date = new Date()
+    const month = date.toLocaleString('en-US', { month: 'long' });
+    document.querySelector("#calendarMonth").innerHTML = month.charAt(0).toUpperCase() + month.substr(1).toLowerCase()
     Appointments.forEach( appo =>{
         if(appo.userId == user.id){
             appoCards.innerHTML += 
@@ -343,9 +345,28 @@ function appoinmentInfo(){
                 <a href="#" class="btn btn-secondary btn-sm card-link px-3">Edit</a>
                 <a href="#" class="btn btn-danger btn-sm card-link ">Cancel</a>
                 </div>
-            </div>`;          
+            </div>`;  
+            let days = document.querySelectorAll("td");
+            let appoDays = appo.date.slice(-2)
+            days.forEach(day =>{
+                if(day.innerText == date.getDate()){
+                    day.style.backgroundColor = "lightblue";
+                }
+
+                if(appoDays.charAt(0) == 0){
+                       appoDays = appoDays.slice(-1);
+                }
+
+                if(day.innerText == appoDays){
+                    day.style.backgroundColor = "lightgray";
+                }
+
+                
+            })
+        
         }
     })
+
 
 }
 
