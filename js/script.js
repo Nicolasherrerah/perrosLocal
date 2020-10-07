@@ -15,6 +15,7 @@ let foodCarousel = document.querySelector("#foodCarousel");
 let clothesCarousel = document.querySelector("#clothesCarousel");
 let suppliesCarousel = document.querySelector("#suppliesCarousel");
 let toysCarousel = document.querySelector("#toysCarousel");
+let addCartBtn = document.querySelector("#addCartBtn");
 let dogCards = document.querySelector("#dogCards")
 let addDogBtn = document.querySelector("#addDogBtn")
 let appoCards = document.querySelector("#appoCards")
@@ -407,6 +408,15 @@ function selectedCategory(){
     }
 }
 
+
+function addToCart(){
+    let products = document.querySelectorAll(".store-product");
+    products.forEach(product =>{
+        console.log(product.innerText)
+    })
+}
+
+
 /*  STORE PAGE END   */
 
 
@@ -438,9 +448,16 @@ if (dogCards) {
     })  
 }
 
-if (newAppointment) {
+if (appoCards) {
     document.addEventListener('DOMContentLoaded', ()=>{
         newAppoBtn.addEventListener("click", petSelect);
         addAppoBtn.addEventListener("click", addAppointment);
+    })
+}
+
+
+if (addCartBtn) {
+    document.addEventListener('DOMContentLoaded', ()=>{
+        addCartBtn.addEventListener("click", addToCart);
     })
 }
