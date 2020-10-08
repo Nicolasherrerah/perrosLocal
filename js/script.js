@@ -411,8 +411,55 @@ function selectedCategory(){
 
 function addToCart(){
     let products = document.querySelectorAll(".store-product");
+    
     products.forEach(product =>{
-        console.log(product.innerText)
+        product.addEventListener("click", ()=>{
+            productName = ((product.innerText).trim()).split("-");
+            productPrice = (productName[1]).trim();
+            let category = (product.closest(".carousel")).firstElementChild.innerText;
+            document.querySelector("#productInfo").innerHTML = 
+            `<div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header ">
+                        <img class="d-inline-block mr-3" width="73" height="83" src="../images/testshop.png" alt="">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <form class="col-md">
+                                    <div class="form-group ">
+                                        <p class="h2 py-3">${category}</p>
+                                        <br>
+                                        <p class="h3 font-weight-normal">${productName[0]}</p>
+                                        <p class="h2 font-weight-normal py-3">${productPrice}</p>
+                                        <br><br>
+                                        <label class="h4 text-muted" for="quantity">Quantity: </label>
+                                        <select class="h5" name="" id="quantity">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </form>
+                                <img src="../images/product.png" alt="" class="m-auto col-md" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center border py-4">
+                        <button type="button" class="btn btn-primary mr-3" id="addCartBtn"><span class="h5">Add to cart</span></button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="h5">Cancel</span></button>
+                    </div>
+                </div>
+            </div>`
+
+        })
+        
+                            
     })
 }
 
@@ -452,12 +499,5 @@ if (appoCards) {
     document.addEventListener('DOMContentLoaded', ()=>{
         newAppoBtn.addEventListener("click", petSelect);
         addAppoBtn.addEventListener("click", addAppointment);
-    })
-}
-
-
-if (addCartBtn) {
-    document.addEventListener('DOMContentLoaded', ()=>{
-        addCartBtn.addEventListener("click", addToCart);
     })
 }

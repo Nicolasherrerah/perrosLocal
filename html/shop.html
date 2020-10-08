@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body onload="activeUser()">
+<body onload="activeUser(), addToCart()">
     <header class="bg-danger">
         <div class="text-white pt-2 mb-0 text-center pr-3">
             <button class="btn float-left pt-3 mr-4 active" onclick="toggleNav()" id="navBtn" aria-pressed="true">
@@ -243,7 +243,7 @@
                             </div>
                             <div class="col-lg-4 col-md-12 my-5 text-center">
                                 <a  class="text-decoration-none lead store-product" data-toggle="modal" data-target="#productInfo">
-                                    <img src="../images/product.png" alt="" class="m-auto">Hypo-Allergenic shampoo 470 ml - <span><small> $</small>10</span>
+                                    <img src="../images/product.png" alt="" class="m-auto">Hypoallergenic shampoo 470 ml - <span><small> $</small>10</span>
                                 </a>
                             </div>
                         </div>
@@ -335,45 +335,8 @@
 
     <!-- PRODUCT INFO WINDOW -->
     <div class="modal fade" id="productInfo" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-                <div class="modal-header ">
-                    <img class="d-inline-block mr-3" width="73" height="83" src="../images/testshop.png" alt="">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <form class="col-md">
-                                <div class="form-group ">
-                                    <p class="h2 py-3">Category</p>
-                                    <br>
-                                    <p class="h3 font-weight-normal">Product name</p>
-                                    <p class="h2 font-weight-normal py-3"><small>$</small>00.00</p>
-                                    <br><br>
-                                    <label class="h4 text-muted" for="quantity">Quantity: </label>
-                                    <select class="h5" name="" id="quantity">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
-                            </form>
-                            <img src="../images/product.png" alt="" class="m-auto col-md" >
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center border py-4">
-                    <button type="button" class="btn btn-primary mr-3" id="addCartBtn"><span class="h5">Add to cart</span></button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="h5">Cancel</span></button>
-                </div>
-          </div>
-        </div>
-      </div>
+        
+    </div>
     <!-- PRODUCT INFO WINDOW END-->
 
 
