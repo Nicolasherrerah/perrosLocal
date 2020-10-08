@@ -217,55 +217,71 @@ function dogInfo(){
     user = JSON.parse(localStorage.getItem("activeUser"));
     dogList = JSON.parse(localStorage.getItem("Dogs"));
 
-    dogList.forEach( dog =>{
+    dogList.forEach(dog =>{
         if(dog.ownerId == user.id){
             dogCards.innerHTML += 
             `<button class="btn dogBtn" data-toggle="modal" data-target="#dogInfo" >
                 <img  class="img-fluid border border-dark rounded" width="250" height="250" src="${dog.picture}" alt="">
                 <span class="h4">${dog.name}</span>
-            </button>`;
-            
-            document.querySelector("#dogInfo").innerHTML +=
-                `<div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
-                            <h4 class="modal-title" id="addTitle">Your pet's information</h4>
-                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="dogNameIn" class="col-form-label">Name:</label>
-                                    <input type="text"  readonly class="form-control-plaintext" name="" value = "${dog.name}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dogBreedIn" class="col-form-label">Breed:</label>
-                                    <input type="text"  readonly class="form-control-plaintext" name="" value = "${dog.breed}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dogAgeIn" class="col-form-label">Age:</label>
-                                    <input type="text"  readonly class="form-control-plaintext" name="" value = "${dog.age}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dogBirthIn" class="col-form-label">Birthday:</label>
-                                    <input type="date"  readonly class="form-control-plaintext" name="" value = "${dog.birthday}">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="py-3 text-center border-top">
-                            <button type="button" class="btn btn-success px-3" id="testBtn">Edit</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
-                </div>`
-        }
-  
-        
+            </button>`;   
+        }    
     })
-
 }
+
+function dogModal(){
+    dogList = JSON.parse(localStorage.getItem("Dogs")); 
+    let dogCardList = document.querySelectorAll(".dogBtn");
+
+    dogCardList.forEach(dogCard =>{
+        dogList.forEach(dog =>{
+            dogCard.addEventListener("click", ()=>{
+                if(dog.name == dogCard.innerText){
+                    document.querySelector("#dogInfo").innerHTML =
+                        `<div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-info text-white">
+                                    <h4 class="modal-title" id="addTitle">Your pet's information</h4>
+                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="dogNameIn" class="col-form-label">Name:</label>
+                                            <input type="text"  readonly class="form-control-plaintext" name="" value = "${dog.name}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dogBreedIn" class="col-form-label">Breed:</label>
+                                            <input type="text"  readonly class="form-control-plaintext" name="" value = "${dog.breed}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dogAgeIn" class="col-form-label">Age:</label>
+                                            <input type="text"  readonly class="form-control-plaintext" name="" value = "${dog.age}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dogBirthIn" class="col-form-label">Birthday:</label>
+                                            <input type="date"  readonly class="form-control-plaintext" name="" value = "${dog.birthday}">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="py-3 text-center border-top">
+                                    <button type="button" class="btn btn-success px-3" id="testBtn">Edit</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>`
+                    }
+                })
+            
+            })
+        })
+        
+}
+
+
+
+
 /*    HOME PAGE END   */
 
 
