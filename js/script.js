@@ -15,7 +15,7 @@ let foodCarousel = document.querySelector("#foodCarousel");
 let clothesCarousel = document.querySelector("#clothesCarousel");
 let suppliesCarousel = document.querySelector("#suppliesCarousel");
 let toysCarousel = document.querySelector("#toysCarousel");
-let addCartBtn = document.querySelector("#addCartBtn");
+let productModal = document.querySelector("#productInfo");
 let dogCards = document.querySelector("#dogCards")
 let addDogBtn = document.querySelector("#addDogBtn")
 let appoCards = document.querySelector("#appoCards")
@@ -425,9 +425,10 @@ function selectedCategory(){
 }
 
 
-function addToCart(){
+function productInfo(){
     let products = document.querySelectorAll(".store-product");
-    
+    user = JSON.parse(localStorage.getItem("activeUser"));
+
     products.forEach(product =>{
         product.addEventListener("click", ()=>{
             productName = ((product.innerText).trim()).split("-");
@@ -461,24 +462,55 @@ function addToCart(){
                                             <option value="5">5</option>
                                         </select>
                                     </div>
+                                    <div class="text-center py-4">
+                                    <button type="submit" class="btn btn-primary mr-3" id="addCartBtn" data-dismiss="modal"><span class="h5">Add to cart</span></button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="h5">Cancel</span></button>
+                                </div>
                                 </form>
                                 <img src="../images/product.png" alt="" class="m-auto col-md" >
                             </div>
                         </div>
                     </div>
-                    <div class="text-center border py-4">
-                        <button type="button" class="btn btn-primary mr-3" id="addCartBtn"><span class="h5">Add to cart</span></button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="h5">Cancel</span></button>
-                    </div>
                 </div>
             </div>`
 
-        })
-        
-                            
+            let addCartBtn = document.querySelector("#addCartBtn");
+            addCartBtn.addEventListener("click", (event)=>{
+                if (localStorage.getItem("Orders")) {
+                    event.preventDefault();
+                    orders = JSON.parse(localStorage.getItem("Orders"));
+                    let order = {
+                        userId: user.id,
+                        id: Date.now(),
+                        category: category,
+                        productname: productName[0],
+                        price: productPrice,
+                        quantity: document.querySelector("#quantity").value
+
+                    }
+                    orders.push(order);
+                    document.querySelector("form").reset();
+                    localStorage.setItem('Orders', JSON.stringify(orders)); 
+                }
+                else{
+                    let orders = [];
+                    event.preventDefault();
+                    let order = {
+                        userId: user.id,
+                        id: Date.now(),
+                        category: category,
+                        productname: productName[0],
+                        price: productPrice,
+                        quantity: document.querySelector("#quantity").value
+                    }
+                    orders.push(order);
+                    document.querySelector("form").reset();
+                    localStorage.setItem('Orders', JSON.stringify(orders)); 
+                }
+            })
+        })              
     })
 }
-
 
 /*  STORE PAGE END   */
 
@@ -517,3 +549,4 @@ if (appoCards) {
         addAppoBtn.addEventListener("click", addAppointment);
     })
 }
+
