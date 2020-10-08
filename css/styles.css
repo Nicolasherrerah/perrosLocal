@@ -86,29 +86,8 @@ body, html{
 }
 
 
-@media screen and (max-width: 576px) {	
-  	.overlay a {font-size: 20px}
-	  
-	  .overlay .closebtn {
-  		font-size: 40px;
-  	}
-
-  	.logo-navbar{
-    	max-width: 60px;
-	}
-
-  	.tmx{
-		max-width: 120px;
-	}
-
-	#myCarousel{
-		width: 100%!important;
-	}
-	.logoFooter{
-		max-width: 120px!important;
-		margin: 0 auto;
-	}
-	#menu {
+@media screen and (max-width: 400px) {	
+	#checkOutLabel{
 		display: none;
 	}
 

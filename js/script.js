@@ -22,6 +22,7 @@ let appoCards = document.querySelector("#appoCards")
 let pets = document.querySelector("#pets")
 let newAppoBtn = document.querySelector("#newAppoBtn")
 let addAppoBtn = document.querySelector("#addAppoBtn")
+let cartBtn = document.querySelector("#cartBtn")
 let dogImg = "";
 
 
@@ -507,6 +508,7 @@ function productInfo(){
                     document.querySelector("form").reset();
                     localStorage.setItem('Orders', JSON.stringify(orders)); 
                 }
+                location.reload();
             })
         })              
     })
@@ -514,7 +516,19 @@ function productInfo(){
 
 /*  STORE PAGE END   */
 
+/*   HEADER    */
 
+function cartItems(){
+    if (localStorage.getItem("Orders")){
+        let orders = JSON.parse(localStorage.getItem("Orders"));
+        let itemNum = document.createElement("p");
+        itemNum.classList.add("rounded-circle", "d-inline-block", "px-2", "border", "border-white", "text-white", "mb-0", "mt-1")
+        itemNum.innerHTML =`<small><b>${orders.length}</b></small>`;
+        cartBtn.appendChild(itemNum);
+    }
+}
+
+/*   HEADER   */
 
 
 if (signupBtn) {
@@ -550,3 +564,7 @@ if (appoCards) {
     })
 }
 
+
+if (navBtn) {
+    document.addEventListener('DOMContentLoaded', cartItems)
+}
