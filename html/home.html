@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body onload="activeUser(), dogInfo(), dogModal()">
+<body onload="activeUser(), dogInfo(), dogModal(), getAppointments()">
     <header class="bg-danger">
         <div class="text-white pt-2 mb-0 text-center pr-3">
             <button class="btn float-left pt-3 mr-4 active" onclick="toggleNav()" id="navBtn" aria-pressed="true">
@@ -106,15 +106,9 @@
             </button>
 
             <h1 class="display-4">Upcoming appointments</h1>
-            <div class="card m-3 my-4" style="width: 18rem;">
-                <div class="card-body">
-                  <h5 class="card-title">Check-up</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Rocco</h6>
-                  <input class="d-block my-2"type="date" name="" id="">
-                  <a href="#" class="btn btn-secondary btn-sm card-link px-3">Edit</a>
-                  <a href="#" class="btn btn-danger btn-sm card-link ">Cancel</a>
-                </div>
-              </div>
+            <div id="upcomingOrder">
+
+            </div>
             <h1 class="display-4">Orders</h1>
             <div class="card" style="width: 18rem;">
                 <img src="../images/orderplaceholder.jpg" width="150" height="300" class="card-img-top" alt="...">

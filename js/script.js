@@ -18,6 +18,7 @@ let toysCarousel = document.querySelector("#toysCarousel");
 let productModal = document.querySelector("#productInfo");
 let dogCards = document.querySelector("#dogCards");
 let addDogBtn = document.querySelector("#addDogBtn");
+let upcomingOrders = document.querySelector("#upcomingOrder");
 let appoCards = document.querySelector("#appoCards");
 let pets = document.querySelector("#pets");
 let newAppoBtn = document.querySelector("#newAppoBtn");
@@ -282,6 +283,23 @@ function dogModal(){
         
 }
 
+function getAppointments(){
+    user = JSON.parse(localStorage.getItem("activeUser"));
+    Appointments = JSON.parse(localStorage.getItem("Appointments"));
+    Appointments.forEach( appo =>{
+        if(appo.userId == user.id){
+            upcomingOrders.innerHTML += 
+            `<div class="card m-3 my-4 d-inline-block" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">${appo.purpose}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">${appo.pet}</h6>
+                <input readonly class="d-block my-2"type="date" name="" value="${appo.date}">
+                <a href="#" class="btn btn-danger btn-sm card-link cancelAppoBtn">Cancel</a>
+                </div>
+            </div>`;  
+        }
+    })
+}
 
 
 
@@ -362,8 +380,8 @@ function appoinmentInfo(){
                 <h5 class="card-title">${appo.purpose}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${appo.pet}</h6>
                 <input readonly class="d-block my-2"type="date" name="" value="${appo.date}">
-                <a href="#" class="btn btn-secondary btn-sm card-link px-3">Edit</a>
-                <a href="#" class="btn btn-danger btn-sm card-link ">Cancel</a>
+                <button class="btn btn-secondary btn-sm card-link px-3">Edit</button>
+                <button class="btn btn-danger btn-sm card-link cancelAppoBtn">Cancel</button>
                 </div>
             </div>`;  
             let days = document.querySelectorAll("td");
@@ -385,6 +403,26 @@ function appoinmentInfo(){
             })
         
         }
+    })
+
+
+}
+
+function cancelAppointment(){
+    let cancelAppoBtn = document.querySelectorAll(".cancelAppoBtn");
+    let appointments = JSON.parse(localStorage.getItem("Appointments"));
+    cancelAppoBtn.forEach(btn =>{
+        appointments.forEach(appo =>{
+            btn.addEventListener("click", (event)=>{
+                console.log(event.target.closest(".card"));
+    
+    
+                let card = btn.closest(".card")
+                appoCards.removeChild(card);
+            })
+
+        })
+        
     })
 
 
@@ -614,7 +652,6 @@ function orderInfo(){
     }
 
 }
-
 
 /*   CHECK-OUT PAGE END    */
 
