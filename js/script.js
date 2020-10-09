@@ -1,28 +1,30 @@
-let navContent = document.querySelector("#homepage > nav")
-let pageContent = document.querySelector("#pagecontent")
-let navBtn = document.querySelector("#navBtn")
-let editprofileBtn = document.querySelector("#editprofileBtn")
-let savechangeBtn = document.querySelector("#savechangesBtn")
-let cancelEdit = document.querySelector("#cancelchangesBtn")
-let name = document.querySelector("#name")
-let birthday = document.querySelector("#birthday")
-let newPicture = document.querySelector("#newPicture")
-let PPicture = document.querySelector("#PPicture")
-let signupBtn = document.querySelector("#signupBtn")
-let loginBtn = document.querySelector("#loginBtn")
+let navContent = document.querySelector("#homepage > nav");
+let pageContent = document.querySelector("#pagecontent");
+let navBtn = document.querySelector("#navBtn");
+let editprofileBtn = document.querySelector("#editprofileBtn");
+let savechangeBtn = document.querySelector("#savechangesBtn");
+let cancelEdit = document.querySelector("#cancelchangesBtn");
+let name = document.querySelector("#name");
+let birthday = document.querySelector("#birthday");
+let newPicture = document.querySelector("#newPicture");
+let PPicture = document.querySelector("#PPicture");
+let signupBtn = document.querySelector("#signupBtn");
+let loginBtn = document.querySelector("#loginBtn");
 let category = document.querySelector("#categorySelect")
 let foodCarousel = document.querySelector("#foodCarousel");
 let clothesCarousel = document.querySelector("#clothesCarousel");
 let suppliesCarousel = document.querySelector("#suppliesCarousel");
 let toysCarousel = document.querySelector("#toysCarousel");
 let productModal = document.querySelector("#productInfo");
-let dogCards = document.querySelector("#dogCards")
-let addDogBtn = document.querySelector("#addDogBtn")
-let appoCards = document.querySelector("#appoCards")
-let pets = document.querySelector("#pets")
-let newAppoBtn = document.querySelector("#newAppoBtn")
-let addAppoBtn = document.querySelector("#addAppoBtn")
-let cartBtn = document.querySelector("#cartBtn")
+let dogCards = document.querySelector("#dogCards");
+let addDogBtn = document.querySelector("#addDogBtn");
+let appoCards = document.querySelector("#appoCards");
+let pets = document.querySelector("#pets");
+let newAppoBtn = document.querySelector("#newAppoBtn");
+let addAppoBtn = document.querySelector("#addAppoBtn");
+let cartBtn = document.querySelector("#cartBtn");
+let inCart = document.querySelector("#inCart");
+let orderPrice = document.querySelector("#orderPrice");
 let dogImg = "";
 
 
@@ -531,6 +533,93 @@ function cartItems(){
 /*   HEADER   */
 
 
+/*  CHECK-OUT PAGE   */
+
+function orderInfo(){
+    if (localStorage.getItem("Orders")){
+        user = JSON.parse(localStorage.getItem("activeUser"));
+        orders = JSON.parse(localStorage.getItem("Orders"));
+        let subtotal = 0;
+    
+        for (let i = 0; i < orders.length; i++) {
+            price = parseFloat((orders[i].price).replace("$", ""));
+            subtotal += price;
+        }
+        
+        orders.forEach(order =>{
+            if(order.userId == user.id){
+                inCart.innerHTML += 
+               `<div class="col-xl-4">
+                    <img  class="m-auto" src="../images/product.png" alt="" height="200" weight="200">
+                    <br>
+                </div>
+                <div class="col-xl-8 mb-4">
+                    <p class="h3 font-weight-normal d-inline-block">${order.productname}</p>
+                    <p class="h3 font-weight-normal float-right">${order.price}</p>
+                    <p class="h5 text-muted pb-3">${order.category}</p>
+                    <label class="h5 text-muted" for="quantity">Quantity: ${order.quantity}</label>
+                    <br>
+                    <br>
+                    <a href="" class="text-dark h6 font-weight-normal">Remove</a>
+                </div>`; 
+     
+                let total = subtotal.toFixed(2)
+                let shipping = "";
+                if(total >= 25){            
+                    orderPrice.innerHTML = 
+                    `<p class="h5 text-muted d-inline-block mr-5">Subtotal </p><p class="h5 text-muted float-right">$ ${total}</p>
+                     <br>
+                     <p class="h6 text-muted d-inline-block mr-5">Shipping<small><sup>&#x2055</sup></small> </p><p class="h5 text-muted float-right">FREE</p>
+                     <p class="text-muted m-0"><sup>&#x2055</sup><small>Free shipping over $25.00</small></p>
+                     <hr>
+                     <p class="h3 d-inline-block mr-5">Total </p><p class="h3 float-right">$${total}</p>
+                    `;
+                }
+                else{
+                    shipping = 5;
+                    orderPrice.innerHTML = 
+                    `<p class="h5 text-muted d-inline-block mr-5">Subtotal </p><p class="h5 text-muted float-right">$ ${total}</p>
+                     <br>
+                     <p class="h6 text-muted d-inline-block mr-5">Shipping<small><sup>&#x2055</sup></small> </p><p class="h5 text-muted float-right">$ ${shipping}.00</p>
+                     <p class="text-muted m-0"><sup>&#x2055</sup><small>Free shipping over $25.00</small></p>
+                     <hr>
+                     <p class="h3 d-inline-block mr-5">Total </p><p class="h3 float-right">$${total+shipping}</p>
+                    `;
+                }
+                
+            }    
+        })
+    }
+    else{
+        inCart.classList.remove("border-bottom");
+        document.querySelector("#cart").innerHTML =
+
+        `   <h1 class="font-weight-normal">Cart</h1>
+            <hr>
+            <div>
+                <h2 class="font-weight-normal">Your cart is empty.</h2>
+                <p class="h4 font-weight-normal pt-2">Go visit our <a href="shop.html" class="text-info">store</a>, we have everything your dog needs.</p>
+            </div>
+        `
+
+
+        orderPrice.innerHTML = 
+        `<p class="h5 text-muted d-inline-block mr-5">Subtotal </p><p class="h5 text-muted float-right">$ 0.00</p>
+         <br>
+         <p class="h6 text-muted d-inline-block mr-5">Shipping<small><sup>&#x2055</sup></small> </p><p class="h5 text-muted float-right"> - </p>
+         <p class="text-muted m-0"><sup>&#x2055</sup><small>Free shipping over $25.00</small></p>
+         <hr>
+         <p class="h3 d-inline-block mr-5">Total </p><p class="h3 float-right">$ 0.00</p>
+        `;
+    }
+
+}
+
+
+/*   CHECK-OUT PAGE END    */
+
+
+
 if (signupBtn) {
     document.addEventListener('DOMContentLoaded', ()=>{
         signupBtn.addEventListener("click", newUser);
@@ -567,4 +656,9 @@ if (appoCards) {
 
 if (navBtn) {
     document.addEventListener('DOMContentLoaded', cartItems)
+}
+
+
+if (inCart) {
+    document.addEventListener('DOMContentLoaded', orderInfo)
 }
