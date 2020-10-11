@@ -638,7 +638,7 @@ function orderInfo(){
         let subtotal = 0;
     
         for (let i = 0; i < orders.length; i++) {
-            price = parseFloat((orders[i].price).replace("$", ""));
+            price = parseFloat((orders[i].price).replace("$", ""))*parseFloat(orders[i].quantity);
             subtotal += price;
         }
         
