@@ -67,17 +67,59 @@ function removePPicture(){
     PPicture.src = "../images/removedImg.png";
 }
 
+function usernameValidation(){
+    let users = JSON.parse(localStorage.getItem("Users"));
+    let valid = false;
+    users.forEach(user =>{
+        if(user.username === document.querySelector("#username").value){
+            valid = false;
+        }
+        else{
+            valid = true;
+        }
+        console.log(valid)
+    })
+    return valid
+}
 
+function emailValidation(){
+    let users = JSON.parse(localStorage.getItem("Users"));
+    let evalid = false;
+    users.forEach(user =>{
+        if(user.email === document.querySelector("#email").value){
+            evalid = false;
+        }
+        else{
+            evalid = true;
+        }
+        console.log(evalid)
+    })
+    return evalid
+}
 
-function newUser(event){
-    if (document.querySelector("form").checkValidity() === false) {
+function newUser(){
+    let form = document.querySelector("form");
+    form.addEventListener('submit', (event)=> {
+    if (form.checkValidity() === false) {
         event.preventDefault();
         event.stopPropagation();
-        document.querySelector("#fillAll").classList.remove("d-none")
     }
     else{
-        if (localStorage.getItem("Users")) {
+        if(localStorage.getItem("Users")) {
             event.preventDefault();
+            console.log(usernameValidation())
+            if (!usernameValidation()){
+                console.log("1")
+                document.querySelector("#username").classList.add("is-invalid");
+                document.querySelector("#usernameFeedback").innerText = "Username is already taken choose another one.";
+                return;
+            }
+            if (!emailValidation()){
+                console.log("2")
+                document.querySelector("#email").classList.add("is-invalid");
+                document.querySelector("#emailFeedback").innerHTML = `This email address is already registered, try to <a href="../index.html" class="text-info">Log in</a>`;
+                return;
+            }
             users = JSON.parse(localStorage.getItem("Users"));
             let user = {
                 id: Date.now(),
@@ -105,10 +147,11 @@ function newUser(event){
             document.querySelector("form").reset();
             localStorage.setItem('Users', JSON.stringify(users));
         }
-        document.querySelector("#fillAll").classList.add("d-none")
+        setTimeout(()=>{window.location.assign("../index.html"); } , 1000);
+        document.querySelector("#createdAlert").classList.remove("d-none")
     }
-    document.querySelector("#createdAlert").classList.remove("d-none")
-    setTimeout(()=>{window.location.assign("../index.html"); } , 1000);
+    form.classList.add('was-validated');
+    }, false);
 }
 
 function logIn(event){
@@ -659,7 +702,7 @@ function orderInfo(){
 
 if (signupBtn) {
     document.addEventListener('DOMContentLoaded', ()=>{
-        signupBtn.addEventListener("click", newUser);
+        window.addEventListener("load", newUser, false);
     })
 }
 
