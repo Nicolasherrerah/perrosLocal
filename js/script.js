@@ -154,19 +154,34 @@ function newUser(){
     }, false);
 }
 
-function logIn(event){
-    event.preventDefault();
-    userList = JSON.parse(localStorage.getItem("Users"));
-    let email = document.querySelector("#email").value;
-    let password = document.querySelector("#password").value;
-
-    userList.find((em)=>{
-        if(em.email == email && em.password == password){
-            localStorage.setItem('activeUser', JSON.stringify(em))
-            window.location.assign("html/home.html");
-        }
+function logIn(){
+    let form = document.querySelector("form");
+    form.addEventListener('submit', (event)=> {
+        userList = JSON.parse(localStorage.getItem("Users"));
+        let email = document.querySelector("#email").value;
+        let password = document.querySelector("#password").value;
+        
+        userList.find((user)=>{
+            if(user.email == email && user.password == password){
+                console.log("1");
+                event.preventDefault();
+                document.querySelector("#email").classList.remove("is-invalid");
+                document.querySelector("#password").classList.remove("is-invalid");
+                document.querySelector("#email").classList.add("is-valid");
+                document.querySelector("#password").classList.add("is-valid");
+                localStorage.setItem('activeUser', JSON.stringify(user))
+                window.location.assign("html/home.html");
+            }
+            else{
+                event.preventDefault();
+                console.log("2");
+                document.querySelector("#email").classList.add("is-invalid");
+                document.querySelector("#emailFeedback").innerText = "Incorrect email or password.";
+                document.querySelector("#password").classList.add("is-invalid");
+                document.querySelector("#passwordFeedback").innerText = "Incorrect email or password.";
+            }
+        })
     })
-
 }
 
 function activeUser(){
@@ -708,7 +723,7 @@ if (signupBtn) {
 
 if (loginBtn) {
     document.addEventListener('DOMContentLoaded', ()=>{
-        loginBtn.addEventListener("click", logIn);
+        window.addEventListener("load", logIn, false);
     })
 }
 

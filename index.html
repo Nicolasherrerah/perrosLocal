@@ -33,21 +33,23 @@
             </ul>
         </div>
         <div class="col-md-4 container py-5 pr-0">
-            <form class="bg-dark text-white rounded w-75 m-auto">
+            <form class="bg-dark text-white rounded w-75 m-auto" novalidate>
                 <p class="h1 font-weight-light pt-3 p-2 text-center">Sign In</p>
                 <div class="form-group p-2">
                     <svg class="mb-1" width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-envelope" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
                     </svg>
                     <label for="email" class="mt-4">Email</label>
-                    <input type="email" class="form-control mb-2" id="email" placeholder="Enter email">
+                    <input type="email" class="form-control mb-2" id="email" placeholder="Enter email" required>
+                    <div class="invalid-feedback" id="emailFeedback">Incorrect email or password.</div>
                 </div>
                 <div class="form-group p-2">
                     <svg class="mb-1" width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-lock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M11.5 8h-7a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1zm-7-1a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-7zm0-3a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
                     </svg>
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter password">
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                    <div class="invalid-feedback" id="passwordFeedback">Incorrect email or password.</div>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-lg mb-5 m-2" id="loginBtn">Log in</button>
