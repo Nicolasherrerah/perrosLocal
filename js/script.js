@@ -439,7 +439,9 @@ function appoinmentInfo(){
                 <h6 class="card-subtitle mb-2 text-muted">${appo.pet}</h6>
                 <input readonly class="d-block my-2"type="date" name="" value="${appo.date}">
                 <button class="btn btn-secondary btn-sm card-link px-3">Edit</button>
-                <button class="btn btn-danger btn-sm card-link cancelAppoBtn">Cancel</button>
+                <button class="btn btn-danger btn-sm card-link cancelAppoBtn" onclick="cancelAppointment(event)">Cancel</button>
+                <p class="d-none">${appo.id}</p>
+                <p class="d-none text-danger">Are you sure you want to cancel your appointment? <b>Click again to cancel</b></p>
                 </div>
             </div>`;  
             let days = document.querySelectorAll("td");
@@ -466,24 +468,19 @@ function appoinmentInfo(){
 
 }
 
-function cancelAppointment(){
-    let cancelAppoBtn = document.querySelectorAll(".cancelAppoBtn");
-    let appointments = JSON.parse(localStorage.getItem("Appointments"));
-    cancelAppoBtn.forEach(btn =>{
-        appointments.forEach(appo =>{
-            btn.addEventListener("click", (event)=>{
-                console.log(event.target.closest(".card"));
-    
-    
-                let card = btn.closest(".card")
-                appoCards.removeChild(card);
-            })
-
-        })
-        
+function cancelAppointment(event){
+    let Appointments = JSON.parse(localStorage.getItem("Appointments"));
+    Appointments.forEach(appo =>{
+        if(event.target.nextElementSibling.innerText == appo.id){
+            if(!event.target.closest("div").lastElementChild.classList.contains("d-none")){
+                let index = Appointments.indexOf(appo);
+                Appointments.splice(index, 1);
+                localStorage.setItem('Appointments', JSON.stringify(Appointments));
+                location.reload();
+            }
+            event.target.closest("div").lastElementChild.classList.remove("d-none");  
+        } 
     })
-
-
 }
 
 /*    APPOINTMENT PAGE END  */
@@ -632,11 +629,10 @@ function cartItems(){
 /*  CHECK-OUT PAGE   */
 
 function orderInfo(){
-    if (localStorage.getItem("Orders")){
+    if (localStorage.getItem("Orders").length > 2){
         user = JSON.parse(localStorage.getItem("activeUser"));
         orders = JSON.parse(localStorage.getItem("Orders"));
         let subtotal = 0;
-    
         for (let i = 0; i < orders.length; i++) {
             price = parseFloat((orders[i].price).replace("$", ""))*parseFloat(orders[i].quantity);
             subtotal += price;
@@ -656,12 +652,14 @@ function orderInfo(){
                     <label class="h5 text-muted" for="quantity">Quantity: ${order.quantity}</label>
                     <br>
                     <br>
-                    <a href="" class="text-dark h6 font-weight-normal">Remove</a>
+                    <p class="d-none">${order.id}</p>
+                    <button class="text-dark h6 font-weight-normal bg-transparent border-0 removeProduct" onclick="removeProduct(event)">Remove</button>
                 </div>`; 
-     
-                let total = subtotal.toFixed(2)
+
+                total = subtotal;
                 let shipping = "";
                 if(total >= 25){            
+                    total = subtotal.toFixed(2)
                     orderPrice.innerHTML = 
                     `<p class="h5 text-muted d-inline-block mr-5">Subtotal </p><p class="h5 text-muted float-right">$ ${total}</p>
                      <br>
@@ -709,6 +707,18 @@ function orderInfo(){
         `;
     }
 
+}
+
+function removeProduct(event){
+    orders = JSON.parse(localStorage.getItem("Orders"));
+    orders.forEach(order =>{
+        if(event.target.previousElementSibling.innerText == order.id){
+            let index = orders.indexOf(order);
+            orders.splice(index, 1);
+            localStorage.setItem('Orders', JSON.stringify(orders));
+            location.reload();
+        }
+    })
 }
 
 /*   CHECK-OUT PAGE END    */
